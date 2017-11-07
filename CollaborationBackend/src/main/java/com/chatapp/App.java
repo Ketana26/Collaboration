@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationBackend;
+package com.chatapp;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationBackend.model;
+package com.chatapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,14 +10,16 @@ import org.springframework.stereotype.Component;
 public class Blog {
 	@Id
 	
-private String blogId;
+    private int blogId;
 	private String blogName;
 	private String blogContent;
+	private String approved;
 	
-	public String getBlogId() {
+	
+	public int getBlogId() {
 		return blogId;
 	}
-	public void setBlogId(String blogId) {
+	public void setBlogId(int blogId) {
 		this.blogId = blogId;
 	}
 	public String getBlogName() {
@@ -32,5 +34,12 @@ private String blogId;
 	public void setBlogContent(String blogContent) {
 		this.blogContent = blogContent;
 	}
+	public String getApproved() {
+		return approved;
+	}
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
+	
 	
 }

@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationBackend.config;
+package com.chatapp.config;
 
 import java.util.Properties;
 
@@ -61,7 +61,7 @@ public class DbConfig
 	{
 		LocalSessionFactoryBuilder builder=new LocalSessionFactoryBuilder(getDataSource());
 	    builder.addProperties(getProperties());
-	    builder.scanPackages("com.chatapp.CollaborationBackend.model");
+	    builder.scanPackages("com.chatapp.model");
 	    System.out.println("in session Factory");
 		return builder.buildSessionFactory();
 	}

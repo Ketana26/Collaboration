@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationBackend.model;
+package com.chatapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,17 +9,24 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Job {
 	@Id
-	private String id;
+	private int id;
 	private String jobTitle;
 	private String jobDescription;
 	private String skillRequired;
 	private String salary;
 	private String companyName;
+	private String jobApproval;
 	
-	public String getId() {
+	public String getJobApproval() {
+		return jobApproval;
+	}
+	public void setJobApproval(String jobApproval) {
+		this.jobApproval = jobApproval;
+	}
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getJobTitle() {

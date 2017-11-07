@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationBackend.dao;
+package com.chatapp.dao;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chatapp.CollaborationBackend.model.Friend;
-import com.chatapp.CollaborationBackend.model.Registration;
+import com.chatapp.model.Friend;
+import com.chatapp.model.Registration;
 
 @Repository("friendDao")
 @Transactional

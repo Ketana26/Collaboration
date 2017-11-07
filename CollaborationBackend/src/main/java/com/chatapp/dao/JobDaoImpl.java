@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationBackend.dao;
+package com.chatapp.dao;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chatapp.CollaborationBackend.model.Job;
+import com.chatapp.model.Blog;
+import com.chatapp.model.Job;
 
 @Repository("jobDao")
 @Transactional
@@ -33,7 +34,7 @@ public class JobDaoImpl implements JobDaoInt {
 	}
 	}
 
-	public void deleteJob(String id) {
+	public void deleteJob(int id) {
 		Session session=sessionFactory.getCurrentSession();
 		Job job=session.get(Job.class,id);
 		session.delete(job);
@@ -45,9 +46,11 @@ public class JobDaoImpl implements JobDaoInt {
 		
 	}
 
-	public Job getJob(String id) {
+	public Job getJob(int id) {
 		Session session=sessionFactory.getCurrentSession();
 		Job job=(Job)session.get(Job.class, id);
+		job.setJobApproval("True");
+		session.save(job);
 		return job;
 	}
 
@@ -57,4 +60,13 @@ public class JobDaoImpl implements JobDaoInt {
 		return query.getResultList();
 	}
 
+	public List<Job> waitingforJobApproval(){
+		 Session session=sessionFactory.getCurrentSession();
+		 Query query=session.createQuery("from Job where jobApproval = 'False'");
+		   List<Job> jobs=query.getResultList();
+		 
+		   return jobs;
+	 }
+	
+	
 }
