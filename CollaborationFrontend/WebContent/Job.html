@@ -4,7 +4,7 @@
 <script>
 var myApp=angular.module('myApp',[]);
 myApp.controller('myCtrl',function($scope,$http){
-$http.get('http://localhost:3035/CollaborationMiddleware/getAllJobs').success(function(data){
+$http.get('http://localhost:3035/CollaborationMiddleware/getJobs').success(function(data){
 $scope.jobs=data;
 });
 });
@@ -26,14 +26,21 @@ td, th {
 
 <table>
 <tr>
-<th>id</th>
-<th>jobDescription</th>
-<th>salary</th>
+<th>Id</th>
+<th>JobDescription</th>
+<th>SkillsRequired</th>
+<th>Salary</th>
+<th>JobEdit</th>
+<th>JobDelete</th>
+
 </tr>
 <tr ng-repeat="job in jobs">
 <td>{{ job.id }}</td>
-<td>{{ job. jobDescription}}</td>
+<td>{{ job.jobDescription}}</td>
+<td>{{ job.skillRequired }}</td>
 <td>{{ job.salary }}</td>
+<td><input type='submit' name='JobEdit' value='Edit'/></td>
+<td><input type='submit' name='JobDelete' value='Delete'/></td>
 </tr>
 </table>
 </body>

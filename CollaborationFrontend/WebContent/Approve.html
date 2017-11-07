@@ -1,26 +1,32 @@
 <html ng-app="myApp">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
 <script>
 var myApp=angular.module('myApp',[]);
 myApp.controller('myCtrl',function($scope,$http){
-$http.get('http://localhost:3035/CollaborationMiddleware/waitBlog').success(function(data){
-$scope.blogs=data;
+$http.get('http://localhost:3035/CollaborationMiddleware/waitBlog').success(function(data1){
+$scope.approvedblog=data1;
 });
+
 });
 </script>
+
 </head>
 <body ng-controller="myCtrl"><style>
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
+
 td, th {
     border: 1px solid #dddddd;
     text-align: left;   
     padding: 8px;
 }
+
 </style>
 
 
@@ -29,17 +35,17 @@ td, th {
 <th>BlogId</th>
 <th>BlogName</th>
 <th>BlogContent</th>
-<th>BlogEdit</th>
-<th>BlogDelete</th>
+<th>Approval</th>
 
 </tr>
-<tr ng-repeat="blog in blogs">
-<td>{{ blog.blogId }}</td>
-<td>{{ blog.blogName }}</td>
-<td>{{ blog.blogContent }}</td>
-<td><input type='submit' name='BlogEdit' value='Edit'/></td>
-<td><input type='submit' name='BlogDelete' value='Delete'/></td>
+<tr ng-repeat="approval in approvedblog ">
+<td>{{ approval.blogId }}</td>
+<td>{{ approval.blogName }}</td>
+<td>{{ approval.blogContent }}</td>
+<td><input type='submit' name='approved' value='Approved'/></td>
+<td><a href="http://localhost:3035/CollaborationMiddleware/approveBlog"+{{ blog.blogId }}/></td>
 </tr>
-</table>
+
+
 </body>
 </html>
