@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationMiddleware.controller;
+package com.chatapp.controller;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chatapp.CollaborationBackend.dao.FriendDaoInt;
-import com.chatapp.CollaborationBackend.model.Friend;
-import com.chatapp.CollaborationBackend.model.Registration;
+import com.chatapp.dao.FriendDaoInt;
+import com.chatapp.model.Friend;
+import com.chatapp.model.Registration;
 
 @RestController
 public class FriendController {

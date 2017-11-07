@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationMiddleware.controller;
+package com.chatapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chatapp.CollaborationBackend.dao.RegisterDaoInt;
-import com.chatapp.CollaborationBackend.model.Registration;
+import com.chatapp.dao.RegisterDaoInt;
+import com.chatapp.model.Registration;
 
 @RestController
 public class RegisterController {
@@ -23,5 +23,10 @@ public class RegisterController {
 				return new ResponseEntity<Registration>(register,HttpStatus.OK);		
 			
 		}
-
+	
+	@PostMapping("/login")
+	public ResponseEntity<Registration> loginCheck(@RequestBody Registration register){
+		registerDao.loginCheck(register);
+		return new ResponseEntity<Registration>(register,HttpStatus.OK);
+	}
 }

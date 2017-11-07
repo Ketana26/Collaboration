@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationMiddleware.controller;
+package com.chatapp.controller;
 
 import java.util.List;
 
@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chatapp.CollaborationBackend.dao.BlogDaoInt;
-import com.chatapp.CollaborationBackend.model.Blog;
+import com.chatapp.dao.BlogDaoInt;
+import com.chatapp.model.Blog;
 
 @RestController
 public class BlogController {
@@ -22,24 +21,28 @@ public class BlogController {
 	
 	@PostMapping("/blogDetails")
 	public ResponseEntity<Blog> addBlog(@RequestBody Blog blog){
+		System.out.println("Hello java");
 		blogDao.addBlog(blog);
-		System.out.println(blog.getBlogId());
+		//System.out.println(blog.getBlogId());
 				return new ResponseEntity<Blog>(blog,HttpStatus.OK);				
 		}
-	@GetMapping("/reqDeleteBlog")
-	public ResponseEntity<Blog> deleteBlog(@RequestParam ("blogId") String blogId){
+	
+	@GetMapping("/reqDeleteBlog/{blogId}")
+	public ResponseEntity<Blog> deleteBlog(@PathVariable ("blogId") int blogId){
+		System.out.println("java");
 		System.out.println(blogId);
 		 blogDao.deleteBlog(blogId);
+		 System.out.println("abc");
       return new ResponseEntity<Blog>(HttpStatus.OK);		
 	}
-	@GetMapping("getblog/{blogId}")
-	public ResponseEntity<Blog> getBlog(@PathVariable ("blogId") String blogId){
+	
+	@GetMapping("/approveBlog/{blogId}")
+	public ResponseEntity<Blog> getBlog(@PathVariable ("blogId") int blogId){
 		System.out.println(blogId);
 		Blog blog=blogDao.getBlog(blogId);
-		return new ResponseEntity<Blog>(HttpStatus.OK);
+		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
 	}
-	
-	
+		
 	@PostMapping("/reqeditblog")
 	public ResponseEntity<Blog> editBlog(@RequestBody Blog blog){
 		blogDao.editBlog(blog);
@@ -52,4 +55,9 @@ public class BlogController {
 		return new ResponseEntity<List<Blog>>(blogs,HttpStatus.OK);
 	}
 	
+	@GetMapping("/waitBlog")
+	public ResponseEntity<List<Blog>> waitingforApproval(){		
+		List<Blog> blogs=blogDao.waitingforApproval();
+		return new ResponseEntity<List<Blog>>(blogs,HttpStatus.OK);
+}
 }

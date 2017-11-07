@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationMiddleware.controller;
+package com.chatapp.controller;
 
 import java.util.List;
 
@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chatapp.CollaborationBackend.dao.JobDaoInt;
-import com.chatapp.CollaborationBackend.model.Job;
+import com.chatapp.dao.JobDaoInt;
+import com.chatapp.model.Blog;
+import com.chatapp.model.Job;
 
 @RestController
 public class JobController {
@@ -26,8 +27,8 @@ public class JobController {
 				return new ResponseEntity<Job>(job,HttpStatus.OK);
 
 }
-@GetMapping("/reqDeleteJob")
-public ResponseEntity<Job> deleteJob(@RequestParam ("id") String id){
+@GetMapping("/reqDeleteJob/{id}")
+public ResponseEntity<Job> deleteJob(@PathVariable ("id") int id){
 		System.out.println(id);
 		jobDao.deleteJob(id);
       return new ResponseEntity<Job>(HttpStatus.OK);		
@@ -40,17 +41,23 @@ public ResponseEntity<Job> editJob(@RequestBody Job job){
 }
 
 @GetMapping("getjob/{id}")
-public ResponseEntity<Job> getJob(@PathVariable ("id") String id){
+public ResponseEntity<Job> getJob(@PathVariable ("id") int id){
 	System.out.println(id);
 	Job job=jobDao.getJob(id);
-	return new ResponseEntity<Job>(HttpStatus.OK);
+	return new ResponseEntity<Job>(job,HttpStatus.OK);
 }
 
-@GetMapping("getAllJobs")
+@GetMapping("getJobs")
 public ResponseEntity<List<Job>> getJobs(){
 	List<Job> jobs=jobDao.getAllJobs();
 	return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
 }
 
+
+@GetMapping("/waitJob")
+public ResponseEntity<List<Job>> waitingforJobApproval(){		
+	List<Job> jobs=jobDao.waitingforJobApproval();
+	return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
+}
 }
 

@@ -1,4 +1,4 @@
-package com.chatapp.CollaborationMiddleware.config;
+package com.chatapp.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
